@@ -113,12 +113,11 @@ export const getLockedUntil = async (lotteryContract) => {
   return lockedUntil;
 }
 
-export const enterLottery = async (lotteryContract, num) => {
+export const buyTickets = async (lotteryContract, num) => {
   num = parseInt(num)
   if (num <= 0) return
   
-  const transaction = await lotteryContract.enter(tokenAddress, num)
-  await transaction.wait()
+  return await lotteryContract.enter(tokenAddress, num)
 }
 
 export const getMyTickets = async (lotteryContract) => {
@@ -132,18 +131,14 @@ export const getMyTickets = async (lotteryContract) => {
   return myTickets;
 }
 
-export const getSomeMLT = async (tokenContract) => {
-  const transaction1 = await tokenContract.getSome()
-  await transaction1.wait()
-  const transaction2 = await tokenContract.approve(lotteryAddress, ethers.BigNumber.from(100).mul(decimalsMultiplier))
-  await transaction2.wait()
+export const getMLT = async (tokenContract) => {
+  return await tokenContract.getSome()
+}
+
+export const approveSpend = async (tokenContract) => {
+  return await tokenContract.approve(lotteryAddress, ethers.BigNumber.from(100).mul(decimalsMultiplier))
 }
 
 export const pickWinner = async (lotteryContract) => {
-  try {
-    const transaction = await lotteryContract.pickWinner(tokenAddress)
-    await transaction.wait()
-  } catch (err) {
-    console.log("error picking winner: ", err)
-  }  
+  return await lotteryContract.pickWinner(tokenAddress)
 }

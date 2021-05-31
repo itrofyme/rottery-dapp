@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 node_modules
+src/abis/build-info
 
 #Hardhat files
 cache
