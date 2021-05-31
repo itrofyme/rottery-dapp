@@ -52,10 +52,10 @@ describe("Lottery", function () {
     await lottery.connect(address4).enter(token.address, 2);
 
     // check that players are entered
-    const playerAddr1 = await lottery.playersArray(1);
-    const playerAddr2 = await lottery.playersArray(4);
-    const playerAddr3 = await lottery.playersArray(5);
-    const playerAddr4 = await lottery.playersArray(6);
+    const playerAddr1 = await lottery.ticketsArray(0);
+    const playerAddr2 = await lottery.ticketsArray(3);
+    const playerAddr3 = await lottery.ticketsArray(4);
+    const playerAddr4 = await lottery.ticketsArray(5);
 
     expect(playerAddr1).to.equal(address1.address);
     expect(playerAddr2).to.equal(address2.address);
@@ -82,7 +82,7 @@ describe("Lottery", function () {
     expect(b4Bef).to.equal(60);
 
     // check that the prize pool is the sum of purchased tickets
-    expect(prizePoolBef).to.equal(140);
+    expect(prizePoolBef).to.equal(140 * 0.95);
     expect(prevPrizePoolBef).to.equal(0);
 
     // check that everyone can get the tickets they bought
@@ -116,20 +116,19 @@ describe("Lottery", function () {
     const totalBalanceBefore = b1Bef + b2Bef + b3Bef + b4Bef;
     const totalBalanceAfter = b1Aft + b2Aft + b3Aft + b4Aft;
     const totalDifference = totalBalanceAfter - totalBalanceBefore;
-    expect(totalDifference).to.equal(prevPrizePoolAft * 0.95)
 
     // check that prize pools are updated after the lottery was drawn
     const prizePoolAft = convertToReadableNumber(await lottery.connect(owner).prizePool());
     const prevPrizePoolAft = convertToReadableNumber(await lottery.connect(owner).prevPrizePool());
 
     expect(prizePoolAft).to.equal(0);
-    expect(prevPrizePoolAft).to.equal(140);
+    expect(prevPrizePoolAft).to.equal(140 * 0.95);
+    expect(totalDifference).to.equal(prevPrizePoolAft)
 
     // the owners ability to withdraw fees
     const b0Bef = convertToReadableNumber(await token.balanceOf(owner.address));
     await lottery.connect(owner).withdrawFees(token.address);
     const b0Aft = convertToReadableNumber(await token.balanceOf(owner.address));
-    expect(b0Aft).to.equal(b0Bef + prevPrizePoolAft * 0.05)
-
+    expect(b0Aft).to.equal(b0Bef + 140 * 0.05);
   });
 });

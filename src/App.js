@@ -19,6 +19,7 @@ const App = () => {
   const [signer, setSigner] = useState(null);
   const [tokenContract, setTokenContract] = useState(null);
   const [lotteryContract, setLotteryContract] = useState(null);
+  /* used for re-rendering certain components when the lottery contract is updated */
   const [latestTransactionHash, setLatestTransactionHash] = useState(null);
 
   useEffect(() => {

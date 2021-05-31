@@ -6,10 +6,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract MOKLotteryToken is ERC20 {
     constructor(uint256 initialSupply) ERC20("MOK Lottery Token", "MLT") {
-      _mint(msg.sender, initialSupply * 10**18);
+      _mint(msg.sender, initialSupply); 
     }
 
     function getSome() public {
-      _mint(msg.sender, 100 * 10**18);
+      _mint(msg.sender, 100 ether); 
     }
 }

@@ -39,7 +39,6 @@ export const getMetamaskProvider = async () => {
 
 export const getTokenContract = (signer) => {
   return new ethers.Contract(tokenAddress, MOKLotteryToken.abi, signer);
-
 };
 
 export const getLotteryContract = (signer) => {
