@@ -28,3 +28,4 @@ src/abis/build-info
 #Hardhat files
 cache
 artifacts
+hardhat.config.js

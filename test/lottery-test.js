@@ -7,7 +7,7 @@ const ticketPrice =
   ethers.BigNumber.from(baseTicketPrice).mul(decimalsMultiplier);
 
 const convertToReadableNumber = (num) => {
-  return ethers.BigNumber.from(num).div(decimalsMultiplier).toNumber();
+  return ethers.BigNumber.from(num).div(decimalsMultiplier).toString();
 };
 
 const convertEpochToTime = (timeEpoch) => {
@@ -40,7 +40,7 @@ describe("Lottery", function () {
     await token.connect(address4).getSome();
 
     // approve lottery to transfer MLTs on players behalf
-    await token.connect(address1).approve(lottery.address, ticketPrice.mul(1));
+    await (await token.connect(address1).approve(lottery.address, ticketPrice.mul(1))).wait();
     await token.connect(address2).approve(lottery.address, ticketPrice.mul(3));
     await token.connect(address3).approve(lottery.address, ticketPrice.mul(1));
     await token.connect(address4).approve(lottery.address, ticketPrice.mul(2));
@@ -76,7 +76,7 @@ describe("Lottery", function () {
     const prevPrizePoolBef = convertToReadableNumber(await lottery.connect(owner).prevPrizePool());
 
     // check that balances reflect how many tickets were purchased
-    expect(b1Bef).to.equal(80);
+    expect(b1Bef).to.equal("80");
     expect(b2Bef).to.equal(40);
     expect(b3Bef).to.equal(80);
     expect(b4Bef).to.equal(60);
@@ -101,7 +101,7 @@ describe("Lottery", function () {
 
     // check that the winning ticket .. is okay
     const prevWinningTicket = await lottery.connect(owner).prevWinningTicket();
-    expect(prevWinningTicket).to.be.ok;
+    expect(prevWinningTicket).to.not.eq(0);
 
     // check that lottery is locked after being drawn
     const lockedUntilAft = await lottery.connect(owner).lockedUntil();

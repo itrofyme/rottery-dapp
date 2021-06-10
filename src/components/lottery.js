@@ -10,11 +10,12 @@ import PickWinner from "./pickWinner";
 import Header from "./header";
 import AccountText from "./accountText";
 
-const Lottery = ({ setIsMetaMaskConnected }) => {
+const Lottery = () => {
+  console.log("lottery");
   return (
     <Container maxWidth="xs">
       <Flex flexDirection="column" py={2}>
-        <Header setIsMetaMaskConnected={setIsMetaMaskConnected} />
+        <Header/>
         <CurrentPrizePool />
         <PrevPrizePool />
         <WinningTicket />

@@ -4,12 +4,13 @@ import WalletButton from "./walletButton";
 import BuyMLTLink from "./buyMLTLink";
 import MyTicketsLink from "./myTicketsLink";
 
-const Header = ({ setIsMetaMaskConnected }) => {
+const Header = () => {
+  console.log("header");
   return (
     <Flex>
       <BuyMLTLink />
       <MyTicketsLink />
-      <WalletButton setIsMetaMaskConnected={setIsMetaMaskConnected} />
+      <WalletButton/>
     </Flex>
   );
 };

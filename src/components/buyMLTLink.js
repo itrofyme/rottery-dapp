@@ -4,6 +4,7 @@ import { getMLT, approveSpend } from "../apis/blockchain";
 import BlockchainContext from "../contexts/BlockchainContext";
 
 const BuyMLTLink = () => {
+  console.log("BuyMLTLink");
   const { isMetaMaskConnected, tokenContract } = useContext(BlockchainContext);
   const [loading, setLoading] = useState(false);
 
