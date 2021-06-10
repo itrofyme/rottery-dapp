@@ -11,7 +11,6 @@ import Header from "./header";
 import AccountText from "./accountText";
 
 const Lottery = () => {
-  console.log("lottery");
   return (
     <Container maxWidth="xs">
       <Flex flexDirection="column" py={2}>

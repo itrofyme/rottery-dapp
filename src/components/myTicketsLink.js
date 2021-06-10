@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, Modal, Card, Button, Box, Heading, Text } from "rimble-ui";
 import { getMyTickets } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 
 const MyTicketsLink = () => {
   const [isMyTicketsOpen, setIsMyTicketsOpen] = useState(false);
@@ -11,7 +11,7 @@ const MyTicketsLink = () => {
     </Text>,
   ]);
   const { isMetaMaskConnected, lotteryContract, latestTransactionHash } =
-    useContext(BlockchainContext);
+    useBlockchainContext();
 
   const closeMyTicketsModal = (e) => {
     e.preventDefault();

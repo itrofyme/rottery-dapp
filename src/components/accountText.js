@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 import { Text } from "rimble-ui";
 
 const AccountText = () => {
-  const { account } = useContext(BlockchainContext);
+  const { account } = useBlockchainContext();
 
   return (
     <Text m={2} fontFamily="mono" fontSize={15}>

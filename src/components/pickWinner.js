@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { Card, Box, Heading, Button, Loader } from "rimble-ui";
 import { pickWinner } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 
 const PickWinner = () => {
   const { isMetaMaskConnected, lotteryContract } =
-    useContext(BlockchainContext);
+    useBlockchainContext();
   const [loading, setLoading] = useState(false);
 
   const handlePickWinner = async (e) => {

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Card, Box, Heading } from "rimble-ui";
 import { getPrevWinningTicket } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 
 const WinningTicket = () => {
   const { isMetaMaskConnected, lotteryContract, latestTransactionHash } =
-    useContext(BlockchainContext);
+    useBlockchainContext();
   const [prevWinningTicket, setPrevWinningTicket] = useState("...");
 
   useEffect(() => {

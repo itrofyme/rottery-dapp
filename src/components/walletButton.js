@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { MetaMaskButton } from "rimble-ui";
 import { requestAccount } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 
-const WalletButton = ({ setIsMetaMaskConnected }) => {
-  const { isMetaMaskConnected, metaMaskProvider } =
-    useContext(BlockchainContext);
+
+const WalletButton = () => {
+  const { isMetaMaskConnected, metaMaskProvider, setIsMetaMaskConnected } =
+    useBlockchainContext();
 
   const handleConnectToMetaMask = async (e) => {
     e.preventDefault();

@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Card, Box, Heading } from "rimble-ui";
 import { getCurrentPrizePool } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
 
 const CurrentPrizePool = () => {
   const { isMetaMaskConnected, lotteryContract, latestTransactionHash } =
-    useContext(BlockchainContext);
+    useBlockchainContext();
   const [currentPrizePool, setCurrentPrizePool] = useState("...");
 
   useEffect(() => {

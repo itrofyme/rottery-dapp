@@ -1,11 +1,12 @@
 import { useContext, useState } from "react";
 import { Link, Loader } from "rimble-ui";
 import { getMLT, approveSpend } from "../apis/blockchain";
-import BlockchainContext from "../contexts/BlockchainContext";
+import { useBlockchainContext } from '../contexts/BlockchainContextTest'
+
 
 const BuyMLTLink = () => {
   console.log("BuyMLTLink");
-  const { isMetaMaskConnected, tokenContract } = useContext(BlockchainContext);
+  const { isMetaMaskConnected, tokenContract } = useBlockchainContext();
   const [loading, setLoading] = useState(false);
 
   const handleBuyMLT = async (e) => {
